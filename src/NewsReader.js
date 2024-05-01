@@ -22,7 +22,7 @@ export function NewsReader() {
     getNews(query);
   }, [query])
 
-  useEffect(() => {getQueryList();}, [])
+  useEffect(() => {getQueryList();}, [currentUser])
 
   async function login() {
     if (currentUser !== null) {
@@ -50,18 +50,24 @@ export function NewsReader() {
   }
 
   async function getQueryList() {
-    try {
-      const response = await fetch(urlQueries);
-        if (response.ok) {
-        const data = await response.json();
-        console.log("savedQueries has been retrieved: ");
-        setSavedQueries(data);
+    if (currentUser === null) {
+      const data = [{"queryName":"Query02","q":"person","language":"en","pageSize":10},
+                    {"queryName":"Query01","q":"work","language":"en","pageSize":10}];
+      setSavedQueries(data);
+    } else {
+      try {
+        const response = await fetch(urlQueries);
+          if (response.ok) {
+          const data = await response.json();
+          console.log("savedQueries has been retrieved: ");
+          setSavedQueries(data);
+        }
+        } catch (error) {
+        console.error('Error fetching news:', error);
       }
-      } catch (error) {
-      console.error('Error fetching news:', error);
-    }
-  } 
-  
+    } 
+  }
+
   async function saveQueryList(savedQueries) {
     try {
       const response = await fetch(urlQueries, {
@@ -144,9 +150,9 @@ export function NewsReader() {
         credentials={credentials}
         currentUser={currentUser}
         setCredentials={setCredentials} />
-      <div >
-        <section className="parent" >
-          <div className="box">
+      <div>
+        <section className="parent">
+          <div className= {(currentUser) ? "box visible":"hidden"}>
             <span className='title'>Query Form</span>
             <QueryForm
               currentUser={currentUser}

@@ -31,7 +31,7 @@ export function QueryForm(params) {
     }
 
     return (
-        <div>
+        <div >
             <form>
                 <div>
                     <label htmlFor="queryName">Query Name: </label>
