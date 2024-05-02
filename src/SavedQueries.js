@@ -27,10 +27,10 @@ export function SavedQueries(params) {
       }
     };
 
-    function currentUserIsAdmin(){
+    function loggedIn(){
       if(params.currentUser){
           if(params.currentUser.user){
-              if(params.currentUser.user === "admin"){
+              if(params.currentUser.user === "admin" || params.currentUser.user === "guest"){
                   return true;
               }
           }
@@ -45,7 +45,7 @@ export function SavedQueries(params) {
             ? getQueries()
             : <li>No Saved Queries, Yet!</li>
           }</ul>
-          <span className={currentUserIsAdmin() ? "block visible":"hidden"} style={{  backgroundColor: "#eee" }}>
+          <span className={loggedIn() ? "block visible":"hidden"} style={{  backgroundColor: "#ffc27c" }}>
             <input type="button" value="Reset" onClick={onResetClick} />
           </span>
         </div>

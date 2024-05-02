@@ -46,7 +46,7 @@ export function Articles(params) {
                     return (<li key={idx} >Was Removed</li>);
                   }
                   let trimTitle = truncate(item.title, 90);
-                  return (<li key={idx}>{trimTitle}<a href={item.url} target="_blank" rel="noreferrer" >&nbsp;Link</a></li>);    
+                  return (<li key={idx}><a href={item.url} target="_blank" rel="noreferrer" >{trimTitle}</a></li>);    
                 }else{
                   return (<li key={idx}>No Title</li>);
                 }
