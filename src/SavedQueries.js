@@ -7,7 +7,7 @@ export function SavedQueries(params) {
     function getQueries() {
       return params.savedQueries.map((item, idx) => {
         let trimTitle = item.queryName.substring(0, 30);
-        return (<li 
+        return (<li style={{ cursor: 'pointer'}}
           key={idx} 
           onClick={()=>onSavedQueryClick(item)} 
           className={(item.queryName === params.selectedQueryName)?"selected":""}
