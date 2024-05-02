@@ -27,7 +27,7 @@ export function Articles(params) {
     };
 
     return (
-      <div>
+      <div style={{height:200 , overflow:"auto"}} >
         Query: {queryName}
         <br/>Count: {articleCount}<br/>
         <div>
