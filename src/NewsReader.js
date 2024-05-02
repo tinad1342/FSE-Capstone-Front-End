@@ -84,6 +84,12 @@ export function NewsReader() {
       console.error('Error fetching news:', error);
     }
   }
+
+  async function deleteQueryList() {
+    let savedQuery = [];
+    saveQueryList(savedQuery);
+    setSavedQueries(savedQuery);
+  }
   
   function onSavedQuerySelect(selectedQuery) {
     setQueryFormObject(selectedQuery);
@@ -164,7 +170,9 @@ export function NewsReader() {
             <span className='title'>Saved Queries</span>
             <SavedQueries savedQueries={savedQueries}
             selectedQueryName={query.queryName}
-            onQuerySelect={onSavedQuerySelect} />
+            onQuerySelect={onSavedQuerySelect}
+            deleteQueryList={deleteQueryList} 
+            currentUser={currentUser}/>
           </div>
           <div className="box">
             <span className='title'>Articles List</span>
